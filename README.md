@@ -1,7 +1,10 @@
 Role Name
 =========
 
-Configure the underlying network for Eucalyptus clodu
+Configure the underlying network for Eucalyptus cloud
+
+** *WARNING !!!* **
+*This role has to be used in the deployment of Eucalyptus cloud. This is not meant to be an angnostic network configuration role !*
 
 Requirements
 ------------
