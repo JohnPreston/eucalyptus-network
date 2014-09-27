@@ -1,0 +1,9 @@
+###########################################################
+#
+# Services handlers
+#
+
+- name: Network restart
+  service: name=network state=restarted
+  tags:
+  - network_config
