@@ -1,7 +1,5 @@
-########################################################################
-#
-# Deploys Eucalyptus
-#
+---
+# tasks file for eucalyptus-network
 
 - include: network_config.yml
 

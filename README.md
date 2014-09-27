@@ -1,8 +1,10 @@
-# eucalyptus-network
+Role Name
+=========
 
-Configure the underlying network for Eucalyptus cloud
+Configure the underlying network for Eucalyptus clodu
 
-## Requirements
+Requirements
+------------
 
 The use must know his network capacities :
 
@@ -10,16 +12,11 @@ The use must know his network capacities :
  
 - Backend-network subnet addressing allowance
 
-## Role variables
-
-### Variables files
-
+Role Variables
+--------------
 
 The vars folder contains different example, one for each of supported topologies by Eucalyptus for its deployment. To use it, the user can simply create a symlink from the file he wants to use and name the target "main.yml"
-
 Otherwise, the user will have to specify the variables file in his playbook (see below).
-
-### Variables
 
 | Name | Defaults | Values | Description | Notes
 |--- |--- |--- |--- |---
@@ -32,7 +29,13 @@ Otherwise, the user will have to specify the variables file in his playbook (see
 | clusters | Object (Dict) | See below | Defines your clusters specific network settings | None
 | vlan_routes | "[]" (empty list) | List of the subnets to add on the NC to communicate over multi-subnets via a specific gateway | Advanced users only
 
-## Example playbook
+Dependencies
+------------
+
+None
+
+Example Playbook
+----------------
 
 ```
 - hosts: all
@@ -44,6 +47,12 @@ Otherwise, the user will have to specify the variables file in his playbook (see
 
 ```
 
-## Author 
+License
+-------
+
+None
+
+Author Information
+------------------
 
 John Mille

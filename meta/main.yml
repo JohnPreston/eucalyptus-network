@@ -1,0 +1,20 @@
+---
+galaxy_info:
+  author: John Mille
+  description: 
+  license: license (GPLv2, CC-BY, etc)
+  min_ansible_version: 1.6
+  platforms:
+  - name: RHEL
+    versions:
+    - 6
+  - name: CentOS
+    versions:
+    - 6
+  categories:
+  - cloud
+  - cloud:ec2
+  - clustering
+  - networking
+  - system
+dependencies: []

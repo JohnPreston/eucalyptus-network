@@ -1,4 +1,7 @@
-#
+---
+# vars file for eucalyptus-network
+
+#############################################################
 # Network specific parameters
 #
 ## CLOUD NETWORK CONFIGURATION ##
@@ -8,7 +11,7 @@ networking_mode: EDGE
 use_vlans: true
 edge_using_private: true
 
-##############################################################
+#############################################################
 ## CLUSTER NETWORK DEFINITION ##
 #
 # These values are to be IN THIS FILE and not in the hosts

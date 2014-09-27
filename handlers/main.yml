@@ -1,7 +1,5 @@
-###########################################################
-#
-# Services handlers
-#
+---
+# handlers file for eucalyptus-network
 
 - name: Network restart
   service: name=network state=restarted
