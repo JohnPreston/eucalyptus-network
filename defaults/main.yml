@@ -1,0 +1,13 @@
+#############################################################
+# Eucalyptus network
+#
+
+############################################################
+#
+# Default configurations
+#
+
+netcfg_path: /etc/sysconfig/network-scripts
+network_conf_path: /etc/sysconfig/network
+sysctl_conf_path: /etc/sysctl.conf
+

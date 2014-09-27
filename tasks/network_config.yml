@@ -1,0 +1,34 @@
+#####################################################################
+#
+# NETWORK_CONFIGURATION
+#
+
+- name : Configure VLANs
+  include: networking/vlan_config.yml
+  when: 
+  - use_vlans
+  tags:
+  - network_config
+  
+- name: Configure NC bridges
+  include: networking/bridge_config.yml
+  when:
+  - not networking_mode == "MANAGED"
+  - inventory_hostname in groups.nc
+  tags:
+  - network_config
+
+- name: Configure routes
+  include: networking/routes_config.yml
+  tags:
+  - network_config
+
+- name: Apply sysctl
+  include: networking/sysctl.yml
+  tags:
+  - network_config
+
+- name: Ensure network loaded
+  service: name=network state=restarted
+  tags:
+  - network_config

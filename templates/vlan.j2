@@ -1,0 +1,22 @@
+#
+# VLAN Auto configuration
+#
+
+NAME={{ hostvars[inventory_hostname]['vlan_iface'] }}.{{ hostvars[inventory_hostname]['vlan_tag'] }}
+DEVICE={{ hostvars[inventory_hostname]['vlan_iface'] }}.{{ hostvars[inventory_hostname]['vlan_tag'] }}
+VLAN=yes
+ONBOOT=yes
+BOOTPROTO=None
+IPV6AUTOCONF=no
+IPV6INIT=no
+NOZEROCONF=yes
+{% if inventory_hostname in groups['nc'] %}
+{% if use_vlans %}
+BRIDGE={{ hostvars[inventory_hostname]['bridge_prefix'] }}{{ hostvars[inventory_hostname]['vlan_tag']}}
+{% else %}
+BRIDGE={{ hostvars[inventory_hostname]['bridge_prefix'] }}{{ hostvars[inventory_hostname]['bridge_id'] }}
+{% endif %}
+{% else %}
+IPADDR={{ ip.stdout }}
+PREFIX={{ prefix.stdout }}
+{% endif %}

@@ -1,0 +1,46 @@
+#
+# Routes config
+#
+
+- name: Add the defined routes
+  shell: ip route add {{ item }} via {{ vlan_gw }}
+  with_items: "{{ vlan_routes }}"
+  ignore_errors: true
+  tags:
+  - network_config
+  when:
+  - use_vlans
+
+- name: Get the routes status
+  shell: ip route | grep via | grep "{{ vlan_gw }}"
+  register: routes_vlan
+  ignore_errors: true
+  tags:
+  - network_config
+  when:
+  - use_vlans
+
+- name: Generate static routes config file | FE VLAN
+  template: src=routes.j2 dest="{{ netcfg_path }}/route-{{ hostvars[inventory_hostname]['vlan_iface'] }}"
+  tags:
+  - network_config
+  when:
+  - inventory_hostname in groups.java_fe
+  - inventory_hostname in groups.cc
+  - use_vlans
+  - not networking_mode == "MANAGED"
+ 
+- name: Generate static routes config file | NC VLAN
+  template: src=routes.j2 dest="{{ netcfg_path }}/route-{{ hostvars[inventory_hostname]['bridge_prefix'] }}{{ hostvars[inventory_hostname]['vlan_tag'] }}"
+  tags:
+  - network_config
+  when:
+  - inventory_hostname in groups.nc
+  - use_vlans
+  - not networking_mode == "MANAGED"
+
+- name: add NOZEROCONF to all networking files
+  shell: for i in `ls /etc/sysconfig/network-scripts/ | egrep ifcfg-'(em|eth|br)'`; do echo "NOZEROCONF=yes" >> /etc/sysconfig/network-scripts/$i ; done
+  tags:
+  - init_config
+  - network_config
