@@ -1,0 +1,24 @@
+#######################################################################
+#
+# Use the appropriate network config depending on the chosen mode
+#
+
+- name: Variables checking
+  debug: msg="Using {{ networking_mode }} in the deployment"
+
+- name: Using EDGE mode
+  include: edge.yml
+  when:
+  - networking_mode == "EDGE"
+
+- name: Using MANAGED mode
+  include: managed.yml
+  when:
+  - networking_mode == "MANAGED"
+
+
+- name: Using EDGE
+  include: managed-novlan.yml
+  when:
+  - networking_mode == "MANAGED-NOVLAN"
+
