@@ -23,14 +23,9 @@ Otherwise, the user will have to specify the variables file in his playbook (see
 
 | Name | Defaults | Values | Description | Notes
 |--- |--- |--- |--- |---
-| networking_mode| None| EDGE/MANAGED/MANAGED-NOVLAN| Defines the networking mode used by Eucalyptus | None
-| use_vlans | true | true/false|  defines wether or not to use vlans in the backend network|  If set to true, VLAN interfaces will be created by the playbook. Not applicable to MANAGED
+| networking_mode| MANAGED-NOVLAN | EDGE/MANAGED/MANAGED-NOVLAN| Defines the networking mode used by Eucalyptus | None
+| use_vlans | false | true/false|  defines wether or not to use vlans in the backend network|  If set to true, VLAN interfaces will be created by the playbook. Not applicable to MANAGED
 | edge_using_private | true | true/false | Defines if EDGE mode should use instances' private address|Applies to EDGE Only
-| instance_dns_domain| eucalyptus.internal | yourdomain.any | Sets the domain search for instances  | None
-| instance_dns_servers | 8.8.8.8 | list of IP addresses | Sets the nameserver(s) for the instances | Must be a list
-| pub_ips | None | list of IP addresses of ranges | Sets the Public IP addresses that will be used by your instances for public traffic | None
-| clusters | Object (Dict) | See below | Defines your clusters specific network settings | None
-| vlan_routes | "[]" (empty list) | List of the subnets to add on the NC to communicate over multi-subnets via a specific gateway | Advanced users only
 
 Dependencies
 ------------
@@ -39,6 +34,14 @@ None
 
 Example Playbook
 ----------------
+
+```
+- hosts: all
+  roles:
+  - eucalyptus-network
+
+```
+
 
 ```
 - hosts: all
@@ -53,9 +56,9 @@ Example Playbook
 License
 -------
 
-None
+Apache
 
 Author Information
 ------------------
 
-John Mille
+John Preston [John Mille]
