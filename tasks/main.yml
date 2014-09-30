@@ -3,11 +3,11 @@
 
 - name : Configure VLANs
   include: vlan_config.yml
-  when: 
+  when:
   - use_vlans
   tags:
   - network_config
-  
+
 - name: Configure NC bridges
   include: bridge_config.yml
   when:

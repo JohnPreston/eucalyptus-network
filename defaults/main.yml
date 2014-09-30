@@ -1,11 +1,13 @@
 ---
 # defaults file for eucalyptus-network
 
-netcfg_path: /etc/sysconfig/network-scripts
-network_conf_path: /etc/sysconfig/network
 sysctl_conf_path: /etc/sysctl.conf
+network_conf_path: /etc/sysconfig/network
+netcfg_path: /etc/sysconfig/network-scripts
 
 networking_mode: MANAGED-NOVLAN
 use_vlans: false
 
 edge_using_private: true
+
+vlan_routes: []

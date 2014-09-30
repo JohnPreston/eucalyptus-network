@@ -29,7 +29,7 @@
   - inventory_hostname in groups.cc
   - use_vlans
   - not networking_mode == "MANAGED"
- 
+
 - name: Generate static routes config file | NC VLAN
   template: src=routes.j2 dest="{{ netcfg_path }}/route-{{ hostvars[inventory_hostname]['bridge_prefix'] }}{{ hostvars[inventory_hostname]['vlan_tag'] }}"
   tags:
