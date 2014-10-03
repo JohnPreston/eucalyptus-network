@@ -17,6 +17,6 @@ BRIDGE={{ hostvars[inventory_hostname]['bridge_prefix'] }}{{ hostvars[inventory_
 BRIDGE={{ hostvars[inventory_hostname]['bridge_prefix'] }}{{ hostvars[inventory_hostname]['bridge_id'] }}
 {% endif %}
 {% else %}
-IPADDR={{ ip.stdout }}
-PREFIX={{ prefix.stdout }}
+IPADDR={{ vlan_ip.split('/')[0] }}
+PREFIX={{ vlan_ip.split('/')[1] }}
 {% endif %}
