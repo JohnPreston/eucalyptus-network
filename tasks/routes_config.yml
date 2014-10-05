@@ -21,12 +21,11 @@
   - use_vlans
 
 - name: Generate static routes config file | FE VLAN
-  template: src=routes.j2 dest="{{ netcfg_path }}/route-{{ hostvars[inventory_hostname]['vlan_iface'] }}"
+  template: src=routes.j2 dest="{{ netcfg_path }}/route-{{ hostvars[inventory_hostname]['vlan_iface'] }}.{{ hostvars[inventory_hostname]['vlan_tag'] }}"
   tags:
   - network_config
   when:
-  - inventory_hostname in groups.java_fe
-  - inventory_hostname in groups.cc
+  - not inventory_hostname in groups.nc
   - use_vlans
   - not networking_mode == "MANAGED"
 
